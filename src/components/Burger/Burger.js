@@ -4,7 +4,7 @@ import classes from './Burger.module.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 const burger = (props) => {
-  const transformedIngredients = Object.keys(props.ingredients) // Converts object keys to array ["salad", "bacon"...]
+  let transformedIngredients = Object.keys(props.ingredients) // Converts object keys to array ["salad", "bacon"...]
     .map(igKey => { // The .map method runs through the array, igKey is "salad", "bacon" etc, once for each array item
       //
       // Explanation of body of .map function as it took me a while to figure this out:
@@ -26,7 +26,12 @@ const burger = (props) => {
       return [...Array(props.ingredients[igKey])].map((_, i) => {
         return <BurgerIngredient key={igKey + i} type={igKey} />
       });
-    });
+    }).reduce((arr, el) => {
+      return arr.concat(el);
+    }, []);
+  if (transformedIngredients.length === 0) {
+    transformedIngredients = <p>Please start adding ingredients!</p>
+  }
   return (
     <div className={classes.Burger}>
       <BurgerIngredient type="bread-top" />
