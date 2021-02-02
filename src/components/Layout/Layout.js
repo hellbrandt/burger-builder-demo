@@ -10,8 +10,10 @@ class Layout extends Component {
     showSideDrawer: false
   }
 
-  sideDrawerOpenHandler = () => {
-    this.setState({ showSideDrawer: true });
+  sideDrawerToggleHandler = () => {
+    this.setState((prevState) => {
+      return { showSideDrawer: !prevState.showSideDrawer };
+    });
   }
 
   sideDrawerClosedHandler = () => {
@@ -21,7 +23,7 @@ class Layout extends Component {
   render() {
     return (
       <Aux>
-        <Toolbar opened={this.sideDrawerOpenHandler} />
+        <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
         <SideDrawer
           open={this.state.showSideDrawer}
           closed={this.sideDrawerClosedHandler}
