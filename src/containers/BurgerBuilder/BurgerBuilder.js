@@ -29,12 +29,20 @@ class BurgerBuilder extends Component {
   componentDidMount() {
     axios.get('/ingredients.json')
       .then(response => {
-        this.setState({ ingredients: response.data })
+        this.setState({
+          ingredients: {
+            salad: response.data.salad,
+            bacon: response.data.bacon,
+            cheese: response.data.cheese,
+            meat: response.data.meat
+          }
+        })
       })
       .catch(error => {
         this.setState({ error: true });
       });
   }
+
 
   updatePurchaseState(ingredients) {
     const sum = Object.keys(ingredients)
@@ -110,7 +118,12 @@ class BurgerBuilder extends Component {
     //   .catch(error => {
     //     this.setState({ loading: false, purchasing: false });
     //   });
-    this.props.history.push('/checkout');
+    let queryString = '?';
+    const ingredientsArray = Object.entries(this.state.ingredients);
+    ingredientsArray.forEach(([key, value]) => {
+      queryString = queryString + key + '=' + value + "&";
+    })
+    this.props.history.push('/checkout' + queryString);
   }
 
   render() {
