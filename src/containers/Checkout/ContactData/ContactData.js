@@ -14,7 +14,7 @@ class ContactData extends Component {
         elementConfig: {
           type: 'text',
           name: 'name',
-          placeholder: 'Your Name'
+          placeholder: 'Name'
         },
         value: '',
         validation: {
