@@ -6,9 +6,9 @@ import Aux from '../../../hoc/Auxilliary/Auxilliary';
 import Backdrop from '../Backdrop/Backdrop';
 
 class Modal extends Component {
-  componentDidUpdate() {
-    console.log('[Modal] did update');
-  }
+  // componentDidUpdate() {
+  //   console.log('[Modal] did update');
+  // }
 
   shouldComponentUpdate(nextProps, nextState) {
     // Could in theory check for more props or use PureComponent which checks all

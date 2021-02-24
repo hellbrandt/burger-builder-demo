@@ -6,9 +6,9 @@ import Button from '../../UI/Button/Button';
 class OrderSummary extends Component {
   // This was a functional component that was converted to a class component
   // to access lifecycle hooks, but could easily work as a function component
-  componentDidUpdate() {
-    console.log('[OrderSummary] did update');
-  }
+  // componentDidUpdate() {
+  //   console.log('[OrderSummary] did update');
+  // }
 
   render() {
     const ingredientSummary = Object.keys(this.props.ingredients)
