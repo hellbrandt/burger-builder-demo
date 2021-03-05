@@ -1,20 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import ingredientsReducer from './store/reducers/ingredients';
+import reducer from './store/reducer';
 
-const rootReducer = combineReducers({
-  ingrs: ingredientsReducer
-});
-
-const store = createStore(rootReducer);
+const store = createStore(reducer);
 
 const app = (
   <Provider store={store}>
