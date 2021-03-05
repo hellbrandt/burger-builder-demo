@@ -7,6 +7,7 @@ import axios from '../../../axios-order';
 import Input from '../../../components/UI/Input/Input';
 
 class ContactData extends Component {
+  // orderForm is local UI state
   state = {
     orderForm: {
       name: {
