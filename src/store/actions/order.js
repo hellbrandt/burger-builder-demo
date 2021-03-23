@@ -81,3 +81,36 @@ export const fetchOrders = () => {
       });
   }
 }
+
+export const deleteOrderSuccess = (orderId) => {
+  return {
+    type: actionTypes.DELETE_ORDER_SUCCESS,
+    orderId: orderId // Need this to delete order from redux state
+  }
+}
+
+export const deleteOrderFail = (error) => {
+  return {
+    type: actionTypes.DELETE_ORDER_FAIL,
+    error: error
+  }
+}
+
+export const deleteOrderStart = () => {
+  return {
+    type: actionTypes.DELETE_ORDER_START
+  }
+}
+
+export const deleteOrder = (orderId) => {
+  return dispatch => {
+    // dispatch(deleteOrderStart());
+    axios.delete('/orders/' + orderId + '.json') // .json is required by Firebase
+      .then(response => {
+        dispatch(deleteOrderSuccess(orderId));
+      })
+      .catch(error => {
+        dispatch(deleteOrderFail(error));
+      });
+  }
+}

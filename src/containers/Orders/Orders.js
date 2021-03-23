@@ -7,9 +7,16 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
+// TODO: Add spinner to deleted order
+// TODO: Network error still showing as success - why?
+
 class Orders extends Component {
   componentDidMount() {
     this.props.onFetchOrders();
+  }
+
+  deleteOrderHandler = (orderId) => {
+    this.props.onDeleteOrder(orderId);
   }
 
   render() {
@@ -19,8 +26,10 @@ class Orders extends Component {
         this.props.orders.map((order) => (
           <Order
             key={order.id}
+            orderId={order.id}
             ingredients={order.ingredients}
-            price={order.price} />
+            price={order.price}
+            deleted={(orderId) => this.deleteOrderHandler(orderId)} />
         ))
       )
     }
@@ -41,7 +50,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchOrders: () => dispatch(actions.fetchOrders())
+    onFetchOrders: () => dispatch(actions.fetchOrders()),
+    onDeleteOrder: (orderId) => dispatch(actions.deleteOrder(orderId))
   }
 }
 
